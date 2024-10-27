@@ -31,10 +31,21 @@
     }
     iframe {
       width: 95vw;
-      height: 70vh; /* Adjusted height to fit input below */
+      height: 60vh; /* Adjusted height to fit dpad and input below */
       max-width: 100%;
       max-height: 100%;
       border: none;
+    }
+    .dpad {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+    .dpad button {
+      padding: 10px;
+      font-size: 1.5rem;
+      margin: 5px;
+      cursor: pointer;
     }
     .input-container {
       width: 95vw;
@@ -62,6 +73,17 @@
             src="https://turbowarp.org/15832807/embed?addons=remove-curved-stage-border" 
             allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen>
     </iframe>
+
+    <!-- D-pad for arrow key simulation -->
+    <div class="dpad">
+      <button onclick="simulateKeyPress('ArrowUp')">↑</button>
+      <div>
+        <button onclick="simulateKeyPress('ArrowLeft')">←</button>
+        <button onclick="simulateKeyPress('ArrowRight')">→</button>
+      </div>
+      <button onclick="simulateKeyPress('ArrowDown')">↓</button>
+    </div>
+
     <div class="input-container">
       <input type="text" id="project-id" placeholder="Enter new project ID" />
       <button onclick="updateIframe()">Load</button>
@@ -85,6 +107,17 @@
       } else {
         alert("Please enter a valid project ID.");
       }
+    }
+
+    // Function to simulate arrow key presses
+    function simulateKeyPress(key) {
+      const event = new KeyboardEvent('keydown', {
+        key: key,
+        code: key,
+        bubbles: true,
+        cancelable: true
+      });
+      document.dispatchEvent(event);
     }
 
     // Check if the device width is more than 768px (likely a computer)
