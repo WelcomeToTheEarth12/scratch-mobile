@@ -27,26 +27,6 @@
       width: 50vw;
       height: 50vh;
     }
-    .desktop-message {
-      display: none;
-    }
-
-    /* For mobile screens */
-    @media (max-width: 768px) {
-      .iframe-container {
-        display: flex;
-      }
-    }
-
-    /* For larger screens (like desktops) */
-    @media (min-width: 769px) {
-      .desktop-message {
-        display: block;
-        font-size: 1.5rem;
-        color: #333;
-        padding: 20px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -55,8 +35,15 @@
             width="482" height="412" allowtransparency="true" frameborder="0" 
             scrolling="no" allowfullscreen></iframe>
   </div>
-  <div class="desktop-message">
-    Hey! This website is made for Mobile devices, and I feel like you're on a PC. Switch to mobile to use the site properly.
-  </div>
+  
+  <script>
+    // Check if the device width is more than 768px (likely a computer)
+    if (window.innerWidth > 768) {
+      alert("Hey! This website is made for Mobile devices, and I feel like you're on a PC. Switch to mobile to use the site properly.");
+    } else {
+      // Display the iframe if it's a mobile screen
+      document.querySelector('.iframe-container').style.display = 'flex';
+    }
+  </script>
 </body>
 </html>
