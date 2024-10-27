@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mobile Site</title>
   <style>
+    /* Prevent scrolling and anchor everything at the top */
     body, html {
       margin: 0;
       padding: 0;
@@ -12,7 +13,7 @@
       height: 100%;
       overflow: hidden;
       display: flex;
-      align-items: center;
+      align-items: flex-start; /* Anchor content to the top */
       justify-content: center;
       text-align: center;
       font-family: Arial, sans-serif;
@@ -23,8 +24,9 @@
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 10px;
-      box-sizing: border-box;
+      position: fixed; /* Fix container to the viewport */
+      top: 0;
+      left: 0;
     }
     iframe {
       width: 95vw;
