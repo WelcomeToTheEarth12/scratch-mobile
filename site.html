@@ -70,13 +70,18 @@
   
   <script>
     function updateIframe() {
-      // Get the new ID from the input field
       const newId = document.getElementById('project-id').value.trim();
-      
-      // Check if newId is valid before updating
+      const iframe = document.getElementById('turbowarp-iframe');
+
       if (newId) {
-        const iframe = document.getElementById('turbowarp-iframe');
+        // Set iframe src to new project ID and handle potential errors
         iframe.src = `https://turbowarp.org/${newId}/embed?addons=remove-curved-stage-border`;
+        
+        // Listen for iframe loading errors to check if project ID is invalid
+        iframe.onerror = function() {
+          alert("Invalid project ID. Loading default project.");
+          iframe.src = "https://turbowarp.org/1087677279/embed?addons=remove-curved-stage-border";
+        };
       } else {
         alert("Please enter a valid project ID.");
       }
